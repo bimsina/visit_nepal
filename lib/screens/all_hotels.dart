@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:visit_nepal/modals/hoteldata.dart';
 import 'package:visit_nepal/widgets/grid_hotels.dart';
 
 class AllHotels extends StatefulWidget {
   final ThemeData themeData;
-  AllHotels({this.themeData});
+  final List<Hotel> hotels;
+  AllHotels({this.themeData,this.hotels});
   @override
   _AllHotelsState createState() => _AllHotelsState();
 }

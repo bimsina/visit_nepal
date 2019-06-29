@@ -63,6 +63,18 @@ class _HotelDetailState extends State<HotelDetail> {
                   Navigator.pop(context);
                 },
               ),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.open_in_browser),
+                  onPressed: () async {
+                    if (await canLaunch(widget.hotel.url)) {
+                      await launch(widget.hotel.url);
+                    } else {
+                      print('cannot launch');
+                    }
+                  },
+                )
+              ],
               backgroundColor: widget.themeData.primaryColor,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
