@@ -17,7 +17,13 @@
 </ul>
 <a href ="https://play.google.com/store/apps/details?id=com.bimsina.visit_nepal"><img src ="https://play.google.com/intl/en/badges/images/generic/en_badge_web_generic.png"></a>
 
-<a href="https://github.com/AnimeshTimsina/tourism_nepal">Code</a> for the back-end.<br>
+## To run this app
+<ol>
+<li>Obtain api key from <a href ="https://openweathermap.org/api">OpenWeatherMap</a>.</li>
+<li>Replace apiString in utils/constants.dart with your api key.</li>
+<li>Run the app with <b>flutter run --release</b></li>
+
+</ol>
 
 ## Screenshots:<br>
 <table style={border:"none"}><tr>

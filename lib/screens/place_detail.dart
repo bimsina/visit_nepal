@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:visit_nepal/utils/constants.dart';
 import '../modals/attractiondata.dart';
 import '../modals/openweather.dart';
 import '../widgets/custom_carousel.dart';
@@ -30,7 +31,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
   Future<void> fetchEpisodes() async {
     try {
       var res = await http.get(
-          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.place.latitude}&lon=${widget.place.longitude}&appid=f1141e173a1ba2b8f2d7cbfa740d13bd");
+          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.place.latitude}&lon=${widget.place.longitude}&appid=$apiString");
       var decodeRes = jsonDecode(res.body);
       print(decodeRes);
       weatherData = OpenWeatherMap.fromJson(decodeRes);

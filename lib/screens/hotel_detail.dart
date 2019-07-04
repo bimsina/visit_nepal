@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:visit_nepal/modals/hoteldata.dart';
+import 'package:visit_nepal/utils/constants.dart';
 import '../modals/openweather.dart';
 import '../widgets/custom_carousel.dart';
 import 'package:http/http.dart' as http;
@@ -29,7 +30,7 @@ class _HotelDetailState extends State<HotelDetail> {
   Future<void> fetchEpisodes() async {
     try {
       var res = await http.get(
-          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.hotel.latitude}&lon=${widget.hotel.longitude}&appid=f1141e173a1ba2b8f2d7cbfa740d13bd");
+          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.hotel.latitude}&lon=${widget.hotel.longitude}&appid=$apiString");
       var decodeRes = jsonDecode(res.body);
       weatherData = OpenWeatherMap.fromJson(decodeRes);
       if (mounted) {
