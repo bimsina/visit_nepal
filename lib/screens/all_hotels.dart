@@ -5,7 +5,7 @@ import 'package:visit_nepal/widgets/grid_hotels.dart';
 class AllHotels extends StatefulWidget {
   final ThemeData themeData;
   final List<Hotel> hotels;
-  AllHotels({this.themeData,this.hotels});
+  AllHotels({this.themeData, this.hotels});
   @override
   _AllHotelsState createState() => _AllHotelsState();
 }
@@ -18,7 +18,7 @@ class _AllHotelsState extends State<AllHotels> {
           centerTitle: true,
           title: Text(
             'All Hotels',
-            style: widget.themeData.textTheme.headline,
+            style: widget.themeData.textTheme.headline5,
           ),
           leading: IconButton(
             icon: Icon(

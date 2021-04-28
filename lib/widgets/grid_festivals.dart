@@ -61,7 +61,7 @@ class GridFestivals extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: Center(
                         child: Text(festivals[index].name,
-                            style: themeData.textTheme.body2,
+                            style: themeData.textTheme.bodyText1,
                             overflow: TextOverflow.ellipsis),
                       ),
                     ),

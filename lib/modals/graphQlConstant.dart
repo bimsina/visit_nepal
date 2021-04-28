@@ -1,16 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-
-final HttpLink httpLink = HttpLink(uri: "http://tourism-nepal.herokuapp.com/");
-final ValueNotifier<GraphQLClient> graphQlClient = ValueNotifier<GraphQLClient>(
-  GraphQLClient(
-    link: httpLink as Link,
-    cache: OptimisticCache(
-      dataIdFromObject: typenameDataIdFromObject,
-    ),
-  ),
-);
-
 const String attractionsList = r"""
   query GetData {
     attractionList {

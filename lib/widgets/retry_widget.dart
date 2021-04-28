@@ -27,15 +27,15 @@ class _RetryWidgetState extends State<RetryWidget> {
             ]
           : <Widget>[
               Text("Oops! Something went wrong !",
-                  style: Theme.of(context).textTheme.body2),
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
-                color: widget.themeData.accentColor,
+                  style: Theme.of(context).textTheme.bodyText1),
+              ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        widget.themeData.accentColor)),
                 child: Text("Retry",
                     style: Theme.of(context)
                         .textTheme
-                        .body2
+                        .bodyText1
                         .copyWith(color: widget.themeData.primaryColor)),
                 onPressed: () {
                   setState(() {

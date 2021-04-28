@@ -5,7 +5,7 @@ class FestivalData {
 
   FestivalData.fromJson(Map<String, dynamic> json) {
     if (json['festivalList'] != null) {
-      festivalList = new List<Festival>();
+      festivalList = [];
       json['festivalList'].forEach((v) {
         festivalList.add(new Festival.fromJson(v));
       });

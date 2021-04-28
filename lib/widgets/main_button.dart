@@ -18,7 +18,7 @@ class MainButton extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(width: 2, color: themeData.accentColor)),
-        child: FlatButton(
+        child: TextButton(
           onPressed: onTap,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -30,7 +30,7 @@ class MainButton extends StatelessWidget {
                   child: Text(title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: themeData.textTheme.body2)),
+                      style: themeData.textTheme.bodyText1)),
             ],
           ),
         ),

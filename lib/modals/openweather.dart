@@ -14,7 +14,7 @@ class OpenWeatherMap {
   OpenWeatherMap.fromJson(Map<String, dynamic> json) {
     coord = json['coord'] != null ? new Coord.fromJson(json['coord']) : null;
     if (json['weather'] != null) {
-      weather = new List<Weather>();
+      weather = [];
       json['weather'].forEach((v) {
         weather.add(new Weather.fromJson(v));
       });

@@ -18,7 +18,7 @@ class _AllAttractionsState extends State<AllAttractions> {
         centerTitle: true,
         title: Text(
           'All Attractions',
-          style: widget.themeData.textTheme.headline,
+          style: widget.themeData.textTheme.headline5,
         ),
         leading: IconButton(
           icon: Icon(
@@ -32,9 +32,7 @@ class _AllAttractionsState extends State<AllAttractions> {
         backgroundColor: widget.themeData.primaryColor,
       ),
       body: GridAttractions(
-        themeData: widget.themeData,
-        attractions: widget.attractions
-      ),
+          themeData: widget.themeData, attractions: widget.attractions),
     );
   }
 }

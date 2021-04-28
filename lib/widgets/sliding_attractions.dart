@@ -44,12 +44,9 @@ class _SlidingPlacesViewState extends State<SlidingPlacesView> {
       height: MediaQuery.of(context).size.height * 0.45,
       child: Query(
         options: QueryOptions(
-            document: attractionsList, variables: <String, dynamic>{}),
-        builder: (
-          QueryResult result, {
-          VoidCallback refetch,
-        }) {
-          if (result.loading) {
+            document: gql(attractionsList), variables: <String, dynamic>{}),
+        builder: (QueryResult result, {fetchMore, refetch}) {
+          if (result.isLoading) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -61,7 +58,7 @@ class _SlidingPlacesViewState extends State<SlidingPlacesView> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Loading Attractions.',
-                    style: Theme.of(context).textTheme.body2,
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 )
               ],
@@ -104,7 +101,7 @@ class _SlidingPlacesViewState extends State<SlidingPlacesView> {
                               MaterialPageRoute(
                                   builder: (context) => PlaceDetail(
                                         place: Attraction.fromJson(result
-                                            .data['attractionList'][index]),
+                                            ?.data['attractionList'][index]),
                                         heroId: attractions[index].name,
                                         themeData: widget.themeData,
                                       )));
@@ -183,7 +180,7 @@ class SlidingCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(name,
-                        style: Theme.of(context).textTheme.body1,
+                        style: Theme.of(context).textTheme.bodyText2,
                         overflow: TextOverflow.ellipsis),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -195,7 +192,7 @@ class SlidingCard extends StatelessWidget {
                           size: 20,
                         ),
                         Text(location,
-                            style: Theme.of(context).textTheme.body2,
+                            style: Theme.of(context).textTheme.bodyText1,
                             overflow: TextOverflow.ellipsis),
                       ],
                     ),

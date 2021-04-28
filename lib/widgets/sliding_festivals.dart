@@ -44,12 +44,9 @@ class _SlidingFestivalsViewState extends State<SlidingFestivalsView> {
       height: MediaQuery.of(context).size.height * 0.45,
       child: Query(
         options: QueryOptions(
-            document: festivalsList, variables: <String, dynamic>{}),
-        builder: (
-          QueryResult result, {
-          VoidCallback refetch,
-        }) {
-          if (result.loading) {
+            document: gql(festivalsList), variables: <String, dynamic>{}),
+        builder: (QueryResult result, {fetchMore, refetch}) {
+          if (result.isLoading) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -61,7 +58,7 @@ class _SlidingFestivalsViewState extends State<SlidingFestivalsView> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Loading Festivals.',
-                    style: Theme.of(context).textTheme.body2,
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 )
               ],
@@ -176,7 +173,7 @@ class SlidingCard extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Center(
                   child: Text(name,
-                      style: Theme.of(context).textTheme.body1,
+                      style: Theme.of(context).textTheme.bodyText2,
                       overflow: TextOverflow.ellipsis),
                 ),
               ),

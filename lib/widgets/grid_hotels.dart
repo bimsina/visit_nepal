@@ -68,7 +68,7 @@ class _GridHotelsState extends State<GridHotels> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(hotels[index].name,
-                            style: widget.themeData.textTheme.body2,
+                            style: widget.themeData.textTheme.bodyText1,
                             overflow: TextOverflow.ellipsis),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,7 +80,7 @@ class _GridHotelsState extends State<GridHotels> {
                               size: 20,
                             ),
                             Text(hotels[index].district,
-                                style: widget.themeData.textTheme.body2,
+                                style: widget.themeData.textTheme.bodyText1,
                                 overflow: TextOverflow.ellipsis),
                           ],
                         ),
@@ -101,12 +101,9 @@ class _GridHotelsState extends State<GridHotels> {
     return widget.hotels == null
         ? Query(
             options: QueryOptions(
-                document: hotelList, variables: <String, dynamic>{}),
-            builder: (
-              QueryResult result, {
-              VoidCallback refetch,
-            }) {
-              if (result.loading) {
+                document: gql(hotelList), variables: <String, dynamic>{}),
+            builder: (QueryResult result, {fetchMore, refetch}) {
+              if (result.isLoading) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -118,7 +115,7 @@ class _GridHotelsState extends State<GridHotels> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Loading ',
-                        style: widget.themeData.textTheme.body2,
+                        style: widget.themeData.textTheme.bodyText1,
                       ),
                     )
                   ],
@@ -128,15 +125,15 @@ class _GridHotelsState extends State<GridHotels> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text("Oops! Something went wrong !",
-                        style: Theme.of(context).textTheme.body2),
-                    RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      color: widget.themeData.accentColor,
+                        style: Theme.of(context).textTheme.bodyText1),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              widget.themeData.accentColor)),
                       child: Text("Retry",
                           style: Theme.of(context)
                               .textTheme
-                              .body2
+                              .bodyText1
                               .copyWith(color: widget.themeData.primaryColor)),
                       onPressed: () {
                         refetch();

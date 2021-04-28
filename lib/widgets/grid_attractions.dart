@@ -64,7 +64,7 @@ class GridAttractions extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Text(attractions[index].name,
-                              style: themeData.textTheme.body2,
+                              style: themeData.textTheme.bodyText1,
                               overflow: TextOverflow.ellipsis),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +76,7 @@ class GridAttractions extends StatelessWidget {
                                 size: 20,
                               ),
                               Text(attractions[index].district,
-                                  style: themeData.textTheme.body2,
+                                  style: themeData.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis),
                             ],
                           ),

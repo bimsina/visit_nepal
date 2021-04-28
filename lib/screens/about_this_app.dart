@@ -11,7 +11,7 @@ class AboutScreen extends StatelessWidget {
           centerTitle: true,
           title: Text(
             'About this app',
-            style: themeData.textTheme.headline,
+            style: themeData.textTheme.headline5,
           ),
           leading: IconButton(
             icon: Icon(
@@ -34,7 +34,7 @@ class AboutScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'This is an app developed with the intention of providing useful information about our country Nepal. And to further flourish the Tourism Industry of Nepal.',
-                  style: themeData.textTheme.body2,
+                  style: themeData.textTheme.bodyText1,
                 ),
               ),
               Padding(
@@ -48,7 +48,7 @@ class AboutScreen extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'Developers',
-                    style: themeData.textTheme.body1,
+                    style: themeData.textTheme.bodyText2,
                   ),
                 ],
               ),

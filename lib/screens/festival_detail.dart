@@ -28,7 +28,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
               floating: true,
               title: Text(
                 widget.festival.name,
-                style: widget.themeData.textTheme.headline,
+                style: widget.themeData.textTheme.headline5,
               ),
               leading: IconButton(
                 icon: Icon(
@@ -83,7 +83,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'Photos',
-                          style: widget.themeData.textTheme.body1,
+                          style: widget.themeData.textTheme.bodyText2,
                         ),
                       ),
                     ],
@@ -100,7 +100,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
         ExpansionTile(
           title: Text(
             'Description',
-            style: widget.themeData.textTheme.body1,
+            style: widget.themeData.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
@@ -113,7 +113,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
                 itemBuilder: (BuildContext context, int index) {
                   return Text(
                     widget.festival.description[index],
-                    style: widget.themeData.textTheme.body2,
+                    style: widget.themeData.textTheme.bodyText1,
                   );
                 },
               ),

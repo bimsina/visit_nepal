@@ -2,23 +2,22 @@ class AttractionData {
   List<Attraction> attractionList;
   List<Attraction> restaurantList;
 
-  AttractionData({this.attractionList,this.restaurantList});
+  AttractionData({this.attractionList, this.restaurantList});
 
   AttractionData.fromJson(Map<String, dynamic> json) {
     if (json['attractionList'] != null) {
-      attractionList = new List<Attraction>();
+      attractionList = [];
       json['attractionList'].forEach((v) {
         attractionList.add(new Attraction.fromJson(v));
       });
     }
     if (json['restaurantList'] != null) {
-      restaurantList = new List<Attraction>();
+      restaurantList = [];
       json['restaurantList'].forEach((v) {
         restaurantList.add(new Attraction.fromJson(v));
       });
     }
   }
- 
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -29,6 +28,7 @@ class AttractionData {
     return data;
   }
 }
+
 class NearbyData {
   List<Attraction> attractionList;
 
@@ -36,7 +36,7 @@ class NearbyData {
 
   NearbyData.fromJson(Map<String, dynamic> json) {
     if (json['attractionByProvince'] != null) {
-      attractionList = new List<Attraction>();
+      attractionList = [];
       json['attractionByProvince'].forEach((v) {
         attractionList.add(new Attraction.fromJson(v));
       });

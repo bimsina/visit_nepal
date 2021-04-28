@@ -19,14 +19,16 @@ class _CustomCarouselState extends State<CustomCarousel> {
       child: Stack(
         children: <Widget>[
           CarouselSlider(
-            height: double.infinity,
-            viewportFraction: 1.0,
-            autoPlay: true,
-            onPageChanged: (index) {
-              setState(() {
-                pageIndex = index;
-              });
-            },
+            options: CarouselOptions(
+              height: double.infinity,
+              viewportFraction: 1.0,
+              autoPlay: true,
+              onPageChanged: (index, _) {
+                setState(() {
+                  pageIndex = index;
+                });
+              },
+            ),
             items: widget.imageUrls.map((i) {
               return Builder(
                 builder: (BuildContext context) {

@@ -43,13 +43,10 @@ class _SlidingHotelsViewState extends State<SlidingHotelsView> {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.45,
       child: Query(
-        options:
-            QueryOptions(document: hotelList, variables: <String, dynamic>{}),
-        builder: (
-          QueryResult result, {
-          VoidCallback refetch,
-        }) {
-          if (result.loading) {
+        options: QueryOptions(
+            document: gql(hotelList), variables: <String, dynamic>{}),
+        builder: (QueryResult result, {fetchMore, refetch}) {
+          if (result.isLoading) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -61,7 +58,7 @@ class _SlidingHotelsViewState extends State<SlidingHotelsView> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Loading hotels.',
-                    style: Theme.of(context).textTheme.body2,
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 )
               ],
@@ -98,14 +95,14 @@ class _SlidingHotelsViewState extends State<SlidingHotelsView> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                         Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HotelDetail(
-                                hotel: hotels[index],
-                                heroId: hotels[index].name,
-                                themeData: widget.themeData,
-                              )));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HotelDetail(
+                                        hotel: hotels[index],
+                                        heroId: hotels[index].name,
+                                        themeData: widget.themeData,
+                                      )));
                         },
                         child: SlidingCard(
                           name: hotels[index].name,
@@ -179,7 +176,7 @@ class SlidingCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(name,
-                        style: Theme.of(context).textTheme.body1,
+                        style: Theme.of(context).textTheme.bodyText2,
                         overflow: TextOverflow.ellipsis),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -191,7 +188,7 @@ class SlidingCard extends StatelessWidget {
                           size: 20,
                         ),
                         Text(location,
-                            style: Theme.of(context).textTheme.body2,
+                            style: Theme.of(context).textTheme.bodyText1,
                             overflow: TextOverflow.ellipsis),
                       ],
                     ),

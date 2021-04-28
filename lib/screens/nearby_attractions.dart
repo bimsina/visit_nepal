@@ -18,13 +18,10 @@ class _NearbyAttractionsState extends State<NearbyAttractions> {
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
-          document: nearbyAttractionsList,
+          document: gql(nearbyAttractionsList),
           variables: <String, dynamic>{"id": widget.provinceId}),
-      builder: (
-        QueryResult result, {
-        VoidCallback refetch,
-      }) {
-        if (result.loading) {
+      builder: (QueryResult result, {fetchMore, refetch}) {
+        if (result.isLoading) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -36,7 +33,7 @@ class _NearbyAttractionsState extends State<NearbyAttractions> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Loading Attractions.',
-                  style: widget.themeData.textTheme.body2,
+                  style: widget.themeData.textTheme.bodyText1,
                 ),
               )
             ],

@@ -18,7 +18,7 @@ class _AllFestivalsState extends State<AllFestivals> {
         centerTitle: true,
         title: Text(
           'All festivals',
-          style: widget.themeData.textTheme.headline,
+          style: widget.themeData.textTheme.headline5,
         ),
         leading: IconButton(
           icon: Icon(
@@ -32,9 +32,7 @@ class _AllFestivalsState extends State<AllFestivals> {
         backgroundColor: widget.themeData.primaryColor,
       ),
       body: GridFestivals(
-        themeData: widget.themeData,
-        festivals: widget.festivals
-      ),
+          themeData: widget.themeData, festivals: widget.festivals),
     );
   }
 }

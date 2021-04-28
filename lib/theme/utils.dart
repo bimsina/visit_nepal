@@ -12,17 +12,17 @@ ThemeData _buildLightTheme() {
     canvasColor: Colors.transparent,
     primaryIconTheme: IconThemeData(color: Colors.black),
     textTheme: TextTheme(
-      headline: TextStyle(
+      headline5: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.bold,
           color: Colors.black,
           fontSize: 20),
-      body1: TextStyle(
+      bodyText2: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.bold,
           color: Colors.black,
           fontSize: 18),
-      body2: TextStyle(
+      bodyText1: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.normal,
           color: Colors.black,
@@ -47,17 +47,17 @@ ThemeData _buildDarkTheme() {
     canvasColor: Colors.transparent,
     primaryIconTheme: IconThemeData(color: Colors.black),
     textTheme: TextTheme(
-      headline: TextStyle(
+      headline5: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 20),
-      body1: TextStyle(
+      bodyText2: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 18),
-      body2: TextStyle(
+      bodyText1: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.normal,
           color: Colors.white,
@@ -82,17 +82,17 @@ ThemeData _buildAmoledTheme() {
     canvasColor: Colors.transparent,
     primaryIconTheme: IconThemeData(color: Colors.black),
     textTheme: TextTheme(
-      headline: TextStyle(
+      headline5: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 20),
-      body1: TextStyle(
+      bodyText2: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.bold,
           color: Colors.white,
           fontSize: 18),
-      body2: TextStyle(
+      bodyText1: TextStyle(
           fontFamily: 'Sans',
           fontWeight: FontWeight.normal,
           color: Colors.white,

@@ -29,8 +29,8 @@ class _HotelDetailState extends State<HotelDetail> {
 
   Future<void> fetchEpisodes() async {
     try {
-      var res = await http.get(
-          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.hotel.latitude}&lon=${widget.hotel.longitude}&appid=$apiString");
+      var res = await http.get(Uri.parse(
+          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.hotel.latitude}&lon=${widget.hotel.longitude}&appid=$apiString"));
       var decodeRes = jsonDecode(res.body);
       weatherData = OpenWeatherMap.fromJson(decodeRes);
       if (mounted) {
@@ -53,7 +53,7 @@ class _HotelDetailState extends State<HotelDetail> {
               floating: true,
               title: Text(
                 widget.hotel.name,
-                style: widget.themeData.textTheme.headline,
+                style: widget.themeData.textTheme.headline5,
               ),
               leading: IconButton(
                 icon: Icon(
@@ -156,7 +156,7 @@ class _HotelDetailState extends State<HotelDetail> {
                               ? 'Fetching...'
                               : '${(weatherData.main.temp - 273.15).toStringAsFixed(2)} °C',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.body1),
+                          style: widget.themeData.textTheme.bodyText2),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
@@ -165,7 +165,7 @@ class _HotelDetailState extends State<HotelDetail> {
                               ? 'Fetching...'
                               : '${weatherData.weather[0].description}',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.body2),
+                          style: widget.themeData.textTheme.bodyText1),
                     ),
                   ],
                 ),
@@ -191,7 +191,7 @@ class _HotelDetailState extends State<HotelDetail> {
                             ? '...'
                             : 'Humidity : ${weatherData.main.humidity} %',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.body2),
+                        style: widget.themeData.textTheme.bodyText1),
                   ),
                 ],
               ),
@@ -214,14 +214,14 @@ class _HotelDetailState extends State<HotelDetail> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text('Cost : ${widget.hotel.cost}',
-                  style: widget.themeData.textTheme.body1),
+                  style: widget.themeData.textTheme.bodyText2),
             ),
             // RaisedButton(
             //     color: widget.themeData.accentColor,
             //     onPressed: () {},
             //     child: Text(
             //       'Book Now!',
-            //       style: widget.themeData.textTheme.body2
+            //       style: widget.themeData.textTheme.bodyText1
             //           .copyWith(color: widget.themeData.primaryColor),
             //     ))
           ],
@@ -230,7 +230,7 @@ class _HotelDetailState extends State<HotelDetail> {
         ExpansionTile(
           title: Text(
             'Amneties',
-            style: widget.themeData.textTheme.body1,
+            style: widget.themeData.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
@@ -256,7 +256,7 @@ class _HotelDetailState extends State<HotelDetail> {
                     Expanded(
                       child: Text(
                         widget.hotel.amenities[index],
-                        style: widget.themeData.textTheme.body2,
+                        style: widget.themeData.textTheme.bodyText1,
                       ),
                     ),
                   ],
@@ -268,7 +268,7 @@ class _HotelDetailState extends State<HotelDetail> {
         ExpansionTile(
           title: Text(
             'Description',
-            style: widget.themeData.textTheme.body1,
+            style: widget.themeData.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
@@ -276,7 +276,7 @@ class _HotelDetailState extends State<HotelDetail> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   widget.hotel.description,
-                  style: widget.themeData.textTheme.body2,
+                  style: widget.themeData.textTheme.bodyText1,
                 )),
           ],
         )
@@ -295,7 +295,7 @@ class _HotelDetailState extends State<HotelDetail> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Photos',
-                style: widget.themeData.textTheme.body1,
+                style: widget.themeData.textTheme.bodyText2,
               ),
             ),
           ],

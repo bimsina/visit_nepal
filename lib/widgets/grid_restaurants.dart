@@ -19,15 +19,14 @@ class _GridRestaurantsState extends State<GridRestaurants> {
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
-          document: widget.isWhat == 0
+          document: gql(widget.isWhat == 0
               ? restaurantList
-              : widget.isWhat == 1 ? cafeList : pubList,
+              : widget.isWhat == 1
+                  ? cafeList
+                  : pubList),
           variables: <String, dynamic>{}),
-      builder: (
-        QueryResult result, {
-        VoidCallback refetch,
-      }) {
-        if (result.loading) {
+      builder: (QueryResult result, {fetchMore, refetch}) {
+        if (result.isLoading) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -39,7 +38,7 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Loading ',
-                  style: widget.themeData.textTheme.body2,
+                  style: widget.themeData.textTheme.bodyText1,
                 ),
               )
             ],
@@ -49,15 +48,15 @@ class _GridRestaurantsState extends State<GridRestaurants> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text("Oops! Something went wrong !",
-                  style: Theme.of(context).textTheme.body2),
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
-                color: widget.themeData.accentColor,
+                  style: Theme.of(context).textTheme.bodyText1),
+              ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        widget.themeData.accentColor)),
                 child: Text("Retry",
                     style: Theme.of(context)
                         .textTheme
-                        .body2
+                        .bodyText1
                         .copyWith(color: widget.themeData.primaryColor)),
                 onPressed: () {
                   refetch();
@@ -124,7 +123,7 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Text(restaurants[index].name,
-                                  style: widget.themeData.textTheme.body2,
+                                  style: widget.themeData.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,7 +135,8 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                                     size: 20,
                                   ),
                                   Text(restaurants[index].district,
-                                      style: widget.themeData.textTheme.body2,
+                                      style:
+                                          widget.themeData.textTheme.bodyText1,
                                       overflow: TextOverflow.ellipsis),
                                 ],
                               ),

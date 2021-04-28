@@ -40,12 +40,12 @@ class DevDetail extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         name,
-                        style: themeData.textTheme.body1,
+                        style: themeData.textTheme.bodyText2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         job,
-                        style: themeData.textTheme.body2,
+                        style: themeData.textTheme.bodyText1,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),

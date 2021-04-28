@@ -18,8 +18,10 @@ class _AllRestaurantsState extends State<AllRestaurants> {
           title: Text(
             widget.isWhat == 0
                 ? 'All Restaurants'
-                : widget.isWhat == 1 ? 'All Cafes' : 'All Pubs',
-            style: widget.themeData.textTheme.headline,
+                : widget.isWhat == 1
+                    ? 'All Cafes'
+                    : 'All Pubs',
+            style: widget.themeData.textTheme.headline5,
           ),
           leading: IconButton(
             icon: Icon(

@@ -5,7 +5,7 @@ class HotelListData {
 
   HotelListData.fromJson(Map<String, dynamic> json) {
     if (json['hotelList'] != null) {
-      hotelList = new List<Hotel>();
+      hotelList = [];
       json['hotelList'].forEach((v) {
         hotelList.add(new Hotel.fromJson(v));
       });

@@ -30,8 +30,8 @@ class _PlaceDetailState extends State<PlaceDetail> {
 
   Future<void> fetchEpisodes() async {
     try {
-      var res = await http.get(
-          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.place.latitude}&lon=${widget.place.longitude}&appid=$apiString");
+      var res = await http.get(Uri.parse(
+          "https://api.openweathermap.org/data/2.5/weather?lat=${widget.place.latitude}&lon=${widget.place.longitude}&appid=$apiString"));
       var decodeRes = jsonDecode(res.body);
       print(decodeRes);
       weatherData = OpenWeatherMap.fromJson(decodeRes);
@@ -91,17 +91,17 @@ class _PlaceDetailState extends State<PlaceDetail> {
                   tabs: <Widget>[
                     Tab(
                       child: Text('General',
-                          style: widget.themeData.textTheme.body2
+                          style: widget.themeData.textTheme.bodyText1
                               .copyWith(fontWeight: FontWeight.bold)),
                     ),
                     Tab(
                       child: Text('Nearby',
-                          style: widget.themeData.textTheme.body2
+                          style: widget.themeData.textTheme.bodyText1
                               .copyWith(fontWeight: FontWeight.bold)),
                     ),
                     // Tab(
                     //   child: Text('Hotels',
-                    //       style: widget.themeData.textTheme.body2
+                    //       style: widget.themeData.textTheme.bodyText1
                     //           .copyWith(fontWeight: FontWeight.bold)),
                     // ),
                   ],
@@ -146,6 +146,8 @@ class _PlaceDetailState extends State<PlaceDetail> {
   }
 
   Widget weatherWidget() {
+    if (weatherData == null) return SizedBox.shrink();
+    var _data = weatherData?.weather[0]?.icon;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Card(
@@ -161,11 +163,13 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 height: 50,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                      weatherData == null
-                          ? 'assets/images/weather.gif'
-                          : 'assets/images/weather/${weatherData.weather[0].icon}.png',
-                      fit: BoxFit.cover),
+                  child: _data == null
+                      ? SizedBox.shrink()
+                      : Image.asset(
+                          weatherData == null
+                              ? 'assets/images/weather.gif'
+                              : 'assets/images/weather/${weatherData.weather[0].icon}.png',
+                          fit: BoxFit.cover),
                 ),
               ),
               Expanded(
@@ -181,7 +185,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                               ? 'Fetching...'
                               : '${(weatherData.main.temp - 273.15).toStringAsFixed(2)} °C',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.body1),
+                          style: widget.themeData.textTheme.bodyText2),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
@@ -190,7 +194,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                               ? 'Fetching...'
                               : '${weatherData.weather[0].description}',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.body2),
+                          style: widget.themeData.textTheme.bodyText1),
                     ),
                   ],
                 ),
@@ -216,7 +220,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                             ? '...'
                             : 'Humidity : ${weatherData.main.humidity} %',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.body2),
+                        style: widget.themeData.textTheme.bodyText1),
                   ),
                 ],
               ),
@@ -236,7 +240,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             widget.place.name,
-            style: widget.themeData.textTheme.headline,
+            style: widget.themeData.textTheme.headline5,
           ),
         ),
         Row(
@@ -252,7 +256,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                   ),
                   Text(
                     widget.place.district,
-                    style: widget.themeData.textTheme.body2
+                    style: widget.themeData.textTheme.bodyText1
                         .copyWith(color: widget.themeData.primaryColor),
                   ),
                 ],
@@ -265,7 +269,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
         ExpansionTile(
           title: Text(
             'Description',
-            style: widget.themeData.textTheme.body1,
+            style: widget.themeData.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
@@ -278,7 +282,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 itemBuilder: (BuildContext context, int index) {
                   return Text(
                     widget.place.description[index],
-                    style: widget.themeData.textTheme.body2,
+                    style: widget.themeData.textTheme.bodyText1,
                   );
                 },
               ),
@@ -300,7 +304,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Photos',
-                style: widget.themeData.textTheme.body1,
+                style: widget.themeData.textTheme.bodyText2,
               ),
             ),
           ],
