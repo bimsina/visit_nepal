@@ -16408,7 +16408,7 @@ ajE:function(){var s=0,r=P.a0(t.z),q,p,o,n,m,l,k,j,i,h
 var $async$ajE=P.V(function(a,b){if(a===1)return P.Y(b,r)
 while(true)switch(s){case 0:s=2
 return P.X(A.ajp(),$async$ajE)
-case 2:q=new D.a_8(P.iw("http://tourism-nepal.herokuapp.com/",0,null))
+case 2:q=new D.a_8(P.iw("https://tourism-nepal.herokuapp.com/",0,null))
 q.r=new O.vH(P.b2(t.Gf))
 p=$.ake()
 p=t.PG.a(p.yG("graphqlClientStore",!1,t.z))
