@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 
 class CustomCarousel extends StatefulWidget {
   final List<String> imageUrls;
@@ -34,7 +35,7 @@ class _CustomCarouselState extends State<CustomCarousel> {
                 builder: (BuildContext context) {
                   return Container(
                     child: FadeInImage(
-                      image: NetworkImage(i),
+                      image: customImage(i),
                       fit: BoxFit.cover,
                       placeholder: AssetImage('assets/images/loading.gif'),
                     ),

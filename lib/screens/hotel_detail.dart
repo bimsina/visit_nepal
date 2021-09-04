@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:visit_nepal/modals/hoteldata.dart';
 import 'package:visit_nepal/utils/constants.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 import '../modals/openweather.dart';
 import '../widgets/custom_carousel.dart';
 import 'package:http/http.dart' as http;
@@ -87,7 +88,7 @@ class _HotelDetailState extends State<HotelDetail> {
                       bottomRight: Radius.circular(16.0),
                     ),
                     child: FadeInImage(
-                      image: NetworkImage(widget.hotel.img[0]),
+                      image: customImage(widget.hotel.img[0]),
                       fit: BoxFit.cover,
                       placeholder: AssetImage('assets/images/loading.gif'),
                     ),

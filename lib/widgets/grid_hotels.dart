@@ -4,6 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:visit_nepal/modals/graphQlConstant.dart';
 import 'package:visit_nepal/modals/hoteldata.dart';
 import 'package:visit_nepal/screens/hotel_detail.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 
 class GridHotels extends StatefulWidget {
   final ThemeData themeData;
@@ -45,7 +46,7 @@ class _GridHotelsState extends State<GridHotels> {
                   child: Hero(
                     tag: hotels[index].name,
                     child: FadeInImage(
-                      image: NetworkImage(hotels[index].img[0]),
+                      image: customImage(hotels[index].img[0]),
                       width: double.infinity,
                       height: double.infinity,
                       fit: BoxFit.cover,

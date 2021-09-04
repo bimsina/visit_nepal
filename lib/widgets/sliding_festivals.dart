@@ -5,6 +5,7 @@ import 'package:visit_nepal/modals/festivaldata.dart';
 import 'package:visit_nepal/modals/graphQlConstant.dart';
 import 'package:visit_nepal/screens/all_festivals.dart';
 import 'package:visit_nepal/screens/festival_detail.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 import 'package:visit_nepal/utils/widgets.dart';
 import 'dart:math' as math;
 
@@ -152,7 +153,7 @@ class SlidingCard extends StatelessWidget {
               child: Hero(
                 tag: name,
                 child: FadeInImage(
-                  image: NetworkImage(imageUrl),
+                  image: customImage(imageUrl),
                   width: double.infinity,
                   height: double.infinity,
                   alignment: Alignment(-offset.abs(), 0),

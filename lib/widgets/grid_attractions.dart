@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:visit_nepal/screens/place_detail.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 import '../modals/attractiondata.dart';
 
 class GridAttractions extends StatelessWidget {
@@ -41,7 +42,7 @@ class GridAttractions extends StatelessWidget {
                     child: Hero(
                       tag: attractions[index].name,
                       child: FadeInImage(
-                        image: NetworkImage(attractions[index].image),
+                        image: customImage(attractions[index].image),
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,

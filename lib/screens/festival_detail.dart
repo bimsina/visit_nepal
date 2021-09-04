@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visit_nepal/modals/festivaldata.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 import '../widgets/custom_carousel.dart';
 
 class FestivalDetail extends StatefulWidget {
@@ -50,7 +51,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
                       bottomRight: Radius.circular(16.0),
                     ),
                     child: FadeInImage(
-                      image: NetworkImage(widget.festival.image),
+                      image: customImage(widget.festival.image),
                       fit: BoxFit.cover,
                       placeholder: AssetImage('assets/images/loading.gif'),
                     ),

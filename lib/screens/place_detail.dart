@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:visit_nepal/utils/constants.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 import '../modals/attractiondata.dart';
 import '../modals/openweather.dart';
 import '../widgets/custom_carousel.dart';
@@ -77,7 +78,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                           bottomRight: Radius.circular(16.0),
                         ),
                         child: FadeInImage(
-                          image: NetworkImage(widget.place.image),
+                          image: customImage(widget.place.image),
                           fit: BoxFit.cover,
                           placeholder: AssetImage('assets/images/loading.gif'),
                         ),

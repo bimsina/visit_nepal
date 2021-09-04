@@ -4,6 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:visit_nepal/modals/graphQlConstant.dart';
 import 'package:visit_nepal/modals/restaurantData.dart';
 import 'package:visit_nepal/screens/restaurantDetail.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 
 class GridRestaurants extends StatefulWidget {
   final ThemeData themeData;
@@ -99,7 +100,7 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                         child: Hero(
                           tag: restaurants[index].name,
                           child: FadeInImage(
-                            image: NetworkImage(restaurants[index].image),
+                            image: customImage(restaurants[index].image),
                             width: double.infinity,
                             height: double.infinity,
                             fit: BoxFit.cover,

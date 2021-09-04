@@ -5,7 +5,7 @@ This is an app that gives you information about all the things that make Nepal b
 ## Features :
 
 <ul>
-<li>Fetch data from a <a href ="http://tourism-nepal.herokuapp.com/">GraphQl Server</a>.</li>
+<li>Fetch data from a <a href ="https://tourism-nepal.herokuapp.com/">GraphQl Server</a>.</li>
 <li>Data collected via web-scraping with Python.</li>
 <li>Navigate to a specific location via Google Maps</li>
 <li>Dynamic Theming using Provider</li>

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:visit_nepal/modals/festivaldata.dart';
 import 'package:visit_nepal/screens/festival_detail.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 
 class GridFestivals extends StatelessWidget {
   final List<Festival> festivals;
@@ -41,7 +42,7 @@ class GridFestivals extends StatelessWidget {
                     child: Hero(
                       tag: festivals[index].name,
                       child: FadeInImage(
-                        image: NetworkImage(festivals[index].image),
+                        image: customImage(festivals[index].image),
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,

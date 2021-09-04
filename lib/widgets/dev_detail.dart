@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:visit_nepal/utils/custom_image.dart';
 
 class DevDetail extends StatelessWidget {
   final ThemeData themeData;
@@ -25,7 +26,7 @@ class DevDetail extends StatelessWidget {
                   width: 65,
                   height: 65,
                   child: FadeInImage(
-                    image: NetworkImage(url),
+                    image: customImage(url),
                     fit: BoxFit.cover,
                     placeholder: AssetImage('assets/images/loading.gif'),
                   ),

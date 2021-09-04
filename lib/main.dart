@@ -6,7 +6,7 @@ import 'screens/home.dart';
 
 void main() async {
   await initHiveForFlutter();
-  final HttpLink httpLink = HttpLink("http://tourism-nepal.herokuapp.com/");
+  final HttpLink httpLink = HttpLink("https://tourism-nepal.herokuapp.com/");
   ValueNotifier<GraphQLClient> graphQlClient = ValueNotifier(
     GraphQLClient(
       link: httpLink,
