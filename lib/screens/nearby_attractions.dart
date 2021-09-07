@@ -6,8 +6,8 @@ import 'package:visit_nepal/modals/graphQlConstant.dart';
 import 'package:visit_nepal/widgets/grid_attractions.dart';
 
 class NearbyAttractions extends StatefulWidget {
-  final ThemeData themeData;
-  final int provinceId;
+  final ThemeData? themeData;
+  final int? provinceId;
   NearbyAttractions({this.themeData, this.provinceId});
   @override
   _NearbyAttractionsState createState() => _NearbyAttractionsState();
@@ -27,13 +27,13 @@ class _NearbyAttractionsState extends State<NearbyAttractions> {
             children: <Widget>[
               CircularProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(widget.themeData.accentColor),
+                    AlwaysStoppedAnimation<Color>(widget.themeData!.accentColor),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Loading Attractions.',
-                  style: widget.themeData.textTheme.bodyText1,
+                  style: widget.themeData!.textTheme.bodyText1,
                 ),
               )
             ],
@@ -41,8 +41,8 @@ class _NearbyAttractionsState extends State<NearbyAttractions> {
         } else if (result.data == null) {
           return Center(child: Text("No Data Found !"));
         } else {
-          List<Attraction> attractions =
-              NearbyData.fromJson(result.data).attractionList;
+          List<Attraction>? attractions =
+              NearbyData.fromJson(result.data!).attractionList;
 
           return GridAttractions(
               themeData: widget.themeData, attractions: attractions);

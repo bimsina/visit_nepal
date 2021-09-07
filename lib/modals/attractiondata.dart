@@ -1,6 +1,6 @@
 class AttractionData {
-  List<Attraction> attractionList;
-  List<Attraction> restaurantList;
+  List<Attraction>? attractionList;
+  List<Attraction>? restaurantList;
 
   AttractionData({this.attractionList, this.restaurantList});
 
@@ -8,13 +8,13 @@ class AttractionData {
     if (json['attractionList'] != null) {
       attractionList = [];
       json['attractionList'].forEach((v) {
-        attractionList.add(new Attraction.fromJson(v));
+        attractionList?.add(new Attraction.fromJson(v));
       });
     }
     if (json['restaurantList'] != null) {
       restaurantList = [];
       json['restaurantList'].forEach((v) {
-        restaurantList.add(new Attraction.fromJson(v));
+        restaurantList?.add(new Attraction.fromJson(v));
       });
     }
   }
@@ -23,14 +23,14 @@ class AttractionData {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.attractionList != null) {
       data['attractionList'] =
-          this.attractionList.map((v) => v.toJson()).toList();
+          this.attractionList?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class NearbyData {
-  List<Attraction> attractionList;
+  List<Attraction>? attractionList;
 
   NearbyData({this.attractionList});
 
@@ -38,7 +38,7 @@ class NearbyData {
     if (json['attractionByProvince'] != null) {
       attractionList = [];
       json['attractionByProvince'].forEach((v) {
-        attractionList.add(new Attraction.fromJson(v));
+        attractionList?.add(new Attraction.fromJson(v));
       });
     }
   }
@@ -47,18 +47,18 @@ class NearbyData {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.attractionList != null) {
       data['attractionByProvince'] =
-          this.attractionList.map((v) => v.toJson()).toList();
+          this.attractionList?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Attraction {
-  String id, name, image, district;
-  int province;
-  List<String> description, img;
-  double latitude;
-  double longitude;
+  String? id, name, image, district;
+  int? province;
+  List<String>? description, img;
+  double? latitude;
+  double? longitude;
 
   Attraction(
       {this.id,

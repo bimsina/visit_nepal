@@ -3,8 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:visit_nepal/utils/custom_image.dart';
 
 class CustomCarousel extends StatefulWidget {
-  final List<String> imageUrls;
-  final ThemeData themeData;
+  final List<String>? imageUrls;
+  final ThemeData? themeData;
   CustomCarousel({this.imageUrls, this.themeData});
   @override
   _CustomCarouselState createState() => _CustomCarouselState();
@@ -16,7 +16,7 @@ class _CustomCarouselState extends State<CustomCarousel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.themeData.primaryColor,
+      color: widget.themeData!.primaryColor,
       child: Stack(
         children: <Widget>[
           CarouselSlider(
@@ -30,7 +30,7 @@ class _CustomCarouselState extends State<CustomCarousel> {
                 });
               },
             ),
-            items: widget.imageUrls.map((i) {
+            items: widget.imageUrls!.map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -51,7 +51,7 @@ class _CustomCarouselState extends State<CustomCarousel> {
               height: 12,
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: widget.imageUrls.length,
+                itemCount: widget.imageUrls!.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
@@ -62,7 +62,7 @@ class _CustomCarouselState extends State<CustomCarousel> {
                       width: index == pageIndex ? 30 : 5,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
-                        color: widget.themeData.accentColor,
+                        color: widget.themeData!.accentColor,
                       ),
                     ),
                   );

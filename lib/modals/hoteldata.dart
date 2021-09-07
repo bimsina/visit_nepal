@@ -1,5 +1,5 @@
 class HotelListData {
-  List<Hotel> hotelList;
+  List<Hotel>? hotelList;
 
   HotelListData({this.hotelList});
 
@@ -7,7 +7,7 @@ class HotelListData {
     if (json['hotelList'] != null) {
       hotelList = [];
       json['hotelList'].forEach((v) {
-        hotelList.add(new Hotel.fromJson(v));
+        hotelList?.add(new Hotel.fromJson(v));
       });
     }
   }
@@ -15,26 +15,26 @@ class HotelListData {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.hotelList != null) {
-      data['hotelList'] = this.hotelList.map((v) => v.toJson()).toList();
+      data['hotelList'] = this.hotelList?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Hotel {
-  String id;
-  String name;
-  List<String> img;
-  String place;
-  String district;
-  double latitude;
-  double longitude;
-  String cost;
-  int province;
-  String description;
-  String star;
-  String url;
-  List<String> amenities;
+  String? id;
+  String? name;
+  List<String>? img;
+  String? place;
+  String? district;
+  double? latitude;
+  double? longitude;
+  String? cost;
+  int? province;
+  String? description;
+  String? star;
+  String? url;
+  List<String>? amenities;
 
   Hotel(
       {this.id,

@@ -7,8 +7,8 @@ import 'package:visit_nepal/screens/hotel_detail.dart';
 import 'package:visit_nepal/utils/custom_image.dart';
 
 class GridHotels extends StatefulWidget {
-  final ThemeData themeData;
-  final List<Hotel> hotels;
+  final ThemeData? themeData;
+  final List<Hotel>? hotels;
 
   GridHotels({this.themeData, this.hotels});
   @override
@@ -44,9 +44,9 @@ class _GridHotelsState extends State<GridHotels> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   child: Hero(
-                    tag: hotels[index].name,
+                    tag: hotels[index].name!,
                     child: FadeInImage(
-                      image: customImage(hotels[index].img[0]),
+                      image: customImage(hotels[index].img![0]),
                       width: double.infinity,
                       height: double.infinity,
                       fit: BoxFit.cover,
@@ -60,7 +60,7 @@ class _GridHotelsState extends State<GridHotels> {
                 right: 16,
                 bottom: 8,
                 child: Card(
-                  color: widget.themeData.primaryColorDark,
+                  color: widget.themeData!.primaryColorDark,
                   elevation: 5,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -68,8 +68,8 @@ class _GridHotelsState extends State<GridHotels> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text(hotels[index].name,
-                            style: widget.themeData.textTheme.bodyText1,
+                        Text(hotels[index].name!,
+                            style: widget.themeData!.textTheme.bodyText1,
                             overflow: TextOverflow.ellipsis),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,11 +77,11 @@ class _GridHotelsState extends State<GridHotels> {
                           children: <Widget>[
                             Icon(
                               Icons.location_on,
-                              color: widget.themeData.accentColor,
+                              color: widget.themeData!.accentColor,
                               size: 20,
                             ),
-                            Text(hotels[index].district,
-                                style: widget.themeData.textTheme.bodyText1,
+                            Text(hotels[index].district!,
+                                style: widget.themeData!.textTheme.bodyText1,
                                 overflow: TextOverflow.ellipsis),
                           ],
                         ),
@@ -110,13 +110,13 @@ class _GridHotelsState extends State<GridHotels> {
                   children: <Widget>[
                     CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          widget.themeData.accentColor),
+                          widget.themeData!.accentColor),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Loading ',
-                        style: widget.themeData.textTheme.bodyText1,
+                        style: widget.themeData!.textTheme.bodyText1,
                       ),
                     )
                   ],
@@ -130,25 +130,25 @@ class _GridHotelsState extends State<GridHotels> {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                              widget.themeData.accentColor)),
+                              widget.themeData!.accentColor)),
                       child: Text("Retry",
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText1
-                              .copyWith(color: widget.themeData.primaryColor)),
+                              .bodyText1!
+                              .copyWith(color: widget.themeData!.primaryColor)),
                       onPressed: () {
-                        refetch();
+                        refetch!();
                       },
                     )
                   ],
                 );
               } else {
                 List<Hotel> hotels =
-                    HotelListData.fromJson(result.data).hotelList;
+                    HotelListData.fromJson(result.data!).hotelList!;
                 return hotelGrid(hotels);
               }
             },
           )
-        : hotelGrid(widget.hotels);
+        : hotelGrid(widget.hotels!);
   }
 }

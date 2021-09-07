@@ -12,7 +12,7 @@ import 'dart:math' as math;
 import 'package:visit_nepal/widgets/retry_widget.dart';
 
 class SlidingPlacesView extends StatefulWidget {
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
   SlidingPlacesView({this.themeData});
 
@@ -21,21 +21,21 @@ class SlidingPlacesView extends StatefulWidget {
 }
 
 class _SlidingPlacesViewState extends State<SlidingPlacesView> {
-  PageController pageController;
-  double pageOffset = 0;
+  PageController? pageController;
+  double? pageOffset = 0;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController(viewportFraction: 0.8);
-    pageController.addListener(() {
-      setState(() => pageOffset = pageController.page);
+    pageController!.addListener(() {
+      setState(() => pageOffset = pageController!.page);
     });
   }
 
   @override
   void dispose() {
-    pageController.dispose();
+    pageController!.dispose();
     super.dispose();
   }
 
@@ -53,7 +53,7 @@ class _SlidingPlacesViewState extends State<SlidingPlacesView> {
               children: <Widget>[
                 CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      widget.themeData.accentColor),
+                      widget.themeData!.accentColor),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -68,12 +68,12 @@ class _SlidingPlacesViewState extends State<SlidingPlacesView> {
             return RetryWidget(
               themeData: widget.themeData,
               onRetried: () {
-                refetch();
+                refetch!();
               },
             );
           } else {
             List<Attraction> attractions =
-                AttractionData.fromJson(result.data).attractionList;
+                AttractionData.fromJson(result.data!).attractionList!;
             return Column(
               children: <Widget>[
                 ShowMore(
@@ -102,18 +102,18 @@ class _SlidingPlacesViewState extends State<SlidingPlacesView> {
                               MaterialPageRoute(
                                   builder: (context) => PlaceDetail(
                                         place: Attraction.fromJson(result
-                                            ?.data['attractionList'][index]),
+                                            .data?['attractionList'][index]),
                                         heroId: attractions[index].name,
                                         themeData: widget.themeData,
                                       )));
                         },
                         child: SlidingCard(
-                          name: result.data['attractionList'][index]['name'],
-                          imageUrl: result.data['attractionList'][index]
+                          name: result.data!['attractionList'][index]['name'],
+                          imageUrl: result.data!['attractionList'][index]
                               ['image'],
-                          location: result.data['attractionList'][index]
+                          location: result.data!['attractionList'][index]
                               ['district'],
-                          offset: pageOffset - index,
+                          offset: pageOffset! - index,
                         ),
                       );
                     },
@@ -129,15 +129,15 @@ class _SlidingPlacesViewState extends State<SlidingPlacesView> {
 }
 
 class SlidingCard extends StatelessWidget {
-  final String name, imageUrl, location;
+  final String? name, imageUrl, location;
   final double offset;
 
   const SlidingCard({
-    Key key,
-    @required this.name,
-    @required this.imageUrl,
-    @required this.location,
-    @required this.offset,
+    Key? key,
+    required this.name,
+    required this.imageUrl,
+    required this.location,
+    required this.offset,
   }) : super(key: key);
 
   @override
@@ -155,7 +155,7 @@ class SlidingCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               child: Hero(
-                tag: name,
+                tag: name!,
                 child: FadeInImage(
                   image: customImage(imageUrl),
                   width: double.infinity,
@@ -180,7 +180,7 @@ class SlidingCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Text(name,
+                    Text(name!,
                         style: Theme.of(context).textTheme.bodyText2,
                         overflow: TextOverflow.ellipsis),
                     Row(
@@ -192,7 +192,7 @@ class SlidingCard extends StatelessWidget {
                           color: Theme.of(context).accentColor,
                           size: 20,
                         ),
-                        Text(location,
+                        Text(location!,
                             style: Theme.of(context).textTheme.bodyText1,
                             overflow: TextOverflow.ellipsis),
                       ],

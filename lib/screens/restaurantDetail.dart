@@ -10,18 +10,18 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 class RestaurantDetail extends StatefulWidget {
-  final String heroId;
+  final String? heroId;
   final Restaurant place;
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
   RestaurantDetail(
-      {@required this.heroId, @required this.place, @required this.themeData});
+      {required this.heroId, required this.place, required this.themeData});
   @override
   _RestaurantDetailState createState() => _RestaurantDetailState();
 }
 
 class _RestaurantDetailState extends State<RestaurantDetail> {
-  OpenWeatherMap weatherData;
+  OpenWeatherMap? weatherData;
 
   void initState() {
     super.initState();
@@ -53,23 +53,23 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
               expandedHeight: _height / 3,
               floating: true,
               title: Text(
-                widget.place.name,
-                style: widget.themeData.textTheme.headline5,
+                widget.place.name!,
+                style: widget.themeData!.textTheme.headline5,
               ),
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
-                  color: widget.themeData.accentColor,
+                  color: widget.themeData!.accentColor,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
-              backgroundColor: widget.themeData.primaryColor,
+              backgroundColor: widget.themeData!.primaryColor,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 background: Hero(
-                  tag: widget.heroId,
+                  tag: widget.heroId!,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
@@ -87,7 +87,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
           ];
         },
         body: Container(
-            color: widget.themeData.primaryColor, child: generalTab()),
+            color: widget.themeData!.primaryColor, child: generalTab()),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -99,12 +99,12 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
             print('cannot launch');
           }
         },
-        backgroundColor: widget.themeData.accentColor,
+        backgroundColor: widget.themeData!.accentColor,
         tooltip: 'Navigate',
         child: Transform.rotate(
             angle: math.pi / 4.0,
             child:
-                Icon(Icons.navigation, color: widget.themeData.primaryColor)),
+                Icon(Icons.navigation, color: widget.themeData!.primaryColor)),
       ),
     );
   }
@@ -115,7 +115,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        color: widget.themeData.primaryColorDark,
+        color: widget.themeData!.primaryColorDark,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
@@ -128,7 +128,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                   child: Image.asset(
                       weatherData == null
                           ? 'assets/images/weather.gif'
-                          : 'assets/images/weather/${weatherData.weather[0].icon}.png',
+                          : 'assets/images/weather/${weatherData!.weather![0].icon}.png',
                       fit: BoxFit.cover),
                 ),
               ),
@@ -143,18 +143,18 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                       child: Text(
                           weatherData == null
                               ? 'Fetching...'
-                              : '${(weatherData.main.temp - 273.15).toStringAsFixed(2)} °C',
+                              : '${(weatherData!.main!.temp! - 273.15).toStringAsFixed(2)} °C',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.bodyText2),
+                          style: widget.themeData!.textTheme.bodyText2),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
                       child: Text(
                           weatherData == null
                               ? 'Fetching...'
-                              : '${weatherData.weather[0].description}',
+                              : '${weatherData!.weather![0].description}',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.bodyText1),
+                          style: widget.themeData!.textTheme.bodyText1),
                     ),
                   ],
                 ),
@@ -169,18 +169,18 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                     child: Text(
                         weatherData == null
                             ? '...'
-                            : '${(weatherData.main.tempMin - 273.15).toStringAsFixed(2)} / ${(weatherData.main.tempMax - 273.15).toStringAsFixed(2)} °C',
+                            : '${(weatherData!.main!.tempMin! - 273.15).toStringAsFixed(2)} / ${(weatherData!.main!.tempMax! - 273.15).toStringAsFixed(2)} °C',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.caption),
+                        style: widget.themeData!.textTheme.caption),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(
                         weatherData == null
                             ? '...'
-                            : 'Humidity : ${weatherData.main.humidity} %',
+                            : 'Humidity : ${weatherData!.main!.humidity} %',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.bodyText1),
+                        style: widget.themeData!.textTheme.bodyText1),
                   ),
                 ],
               ),
@@ -199,25 +199,25 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            widget.place.name,
-            style: widget.themeData.textTheme.headline5,
+            widget.place.name!,
+            style: widget.themeData!.textTheme.headline5,
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Chip(
-              backgroundColor: widget.themeData.accentColor,
+              backgroundColor: widget.themeData!.accentColor,
               label: Row(
                 children: <Widget>[
                   Icon(
                     Icons.location_on,
-                    color: widget.themeData.primaryColor,
+                    color: widget.themeData!.primaryColor,
                   ),
                   Text(
-                    widget.place.district,
-                    style: widget.themeData.textTheme.bodyText1
-                        .copyWith(color: widget.themeData.primaryColor),
+                    widget.place.district!,
+                    style: widget.themeData!.textTheme.bodyText1!
+                        .copyWith(color: widget.themeData!.primaryColor),
                   ),
                 ],
               ),
@@ -225,19 +225,19 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
           ],
         ),
         weatherWidget(),
-        widget.place.img.length == 0 ? Container() : _imageWidget(),
+        widget.place.img!.length == 0 ? Container() : _imageWidget(),
         ExpansionTile(
           title: Text(
             'Description',
-            style: widget.themeData.textTheme.bodyText2,
+            style: widget.themeData!.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  widget.place.description,
-                  style: widget.themeData.textTheme.bodyText1,
+                  widget.place.description!,
+                  style: widget.themeData!.textTheme.bodyText1,
                 )),
           ],
         )
@@ -256,7 +256,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Photos',
-                style: widget.themeData.textTheme.bodyText2,
+                style: widget.themeData!.textTheme.bodyText2,
               ),
             ),
           ],

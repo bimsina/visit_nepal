@@ -7,7 +7,7 @@ import 'package:visit_nepal/screens/restaurantDetail.dart';
 import 'package:visit_nepal/utils/custom_image.dart';
 
 class GridRestaurants extends StatefulWidget {
-  final ThemeData themeData;
+  final ThemeData? themeData;
   final int isWhat;
 
   GridRestaurants({this.themeData, this.isWhat = 0});
@@ -33,13 +33,13 @@ class _GridRestaurantsState extends State<GridRestaurants> {
             children: <Widget>[
               CircularProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(widget.themeData.accentColor),
+                    AlwaysStoppedAnimation<Color>(widget.themeData!.accentColor),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Loading ',
-                  style: widget.themeData.textTheme.bodyText1,
+                  style: widget.themeData!.textTheme.bodyText1,
                 ),
               )
             ],
@@ -53,24 +53,24 @@ class _GridRestaurantsState extends State<GridRestaurants> {
               ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                        widget.themeData.accentColor)),
+                        widget.themeData!.accentColor)),
                 child: Text("Retry",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1
-                        .copyWith(color: widget.themeData.primaryColor)),
+                        .bodyText1!
+                        .copyWith(color: widget.themeData!.primaryColor)),
                 onPressed: () {
-                  refetch();
+                  refetch!();
                 },
               )
             ],
           );
         } else {
           List<Restaurant> restaurants = widget.isWhat == 0
-              ? RestaurantData.fromJson(result.data).restaurantList
+              ? RestaurantData.fromJson(result.data!).restaurantList!
               : widget.isWhat == 1
-                  ? RestaurantData.fromJson(result.data).cafeList
-                  : RestaurantData.fromJson(result.data).pubList;
+                  ? RestaurantData.fromJson(result.data!).cafeList!
+                  : RestaurantData.fromJson(result.data!).pubList!;
           return GridView.builder(
             physics: BouncingScrollPhysics(),
             itemCount: restaurants.length,
@@ -98,7 +98,7 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         child: Hero(
-                          tag: restaurants[index].name,
+                          tag: restaurants[index].name!,
                           child: FadeInImage(
                             image: customImage(restaurants[index].image),
                             width: double.infinity,
@@ -115,7 +115,7 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                       right: 16,
                       bottom: 8,
                       child: Card(
-                        color: widget.themeData.primaryColorDark,
+                        color: widget.themeData!.primaryColorDark,
                         elevation: 5,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -123,8 +123,8 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Text(restaurants[index].name,
-                                  style: widget.themeData.textTheme.bodyText1,
+                              Text(restaurants[index].name!,
+                                  style: widget.themeData!.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,12 +132,12 @@ class _GridRestaurantsState extends State<GridRestaurants> {
                                 children: <Widget>[
                                   Icon(
                                     Icons.location_on,
-                                    color: widget.themeData.accentColor,
+                                    color: widget.themeData!.accentColor,
                                     size: 20,
                                   ),
-                                  Text(restaurants[index].district,
+                                  Text(restaurants[index].district!,
                                       style:
-                                          widget.themeData.textTheme.bodyText1,
+                                          widget.themeData!.textTheme.bodyText1,
                                       overflow: TextOverflow.ellipsis),
                                 ],
                               ),

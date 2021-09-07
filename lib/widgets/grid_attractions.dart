@@ -5,17 +5,17 @@ import 'package:visit_nepal/utils/custom_image.dart';
 import '../modals/attractiondata.dart';
 
 class GridAttractions extends StatelessWidget {
-  final List<Attraction> attractions;
-  final ThemeData themeData;
+  final List<Attraction>? attractions;
+  final ThemeData? themeData;
   GridAttractions({this.attractions, this.themeData});
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: themeData.primaryColor,
+      color: themeData!.primaryColor,
       padding: EdgeInsets.only(top: 8),
       child: GridView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: attractions.length,
+        itemCount: attractions!.length,
         gridDelegate:
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
@@ -25,8 +25,8 @@ class GridAttractions extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => PlaceDetail(
-                            place: attractions[index],
-                            heroId: attractions[index].name,
+                            place: attractions![index],
+                            heroId: attractions![index].name,
                             themeData: themeData,
                           )));
             },
@@ -40,9 +40,9 @@ class GridAttractions extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     child: Hero(
-                      tag: attractions[index].name,
+                      tag: attractions![index].name!,
                       child: FadeInImage(
-                        image: customImage(attractions[index].image),
+                        image: customImage(attractions![index].image),
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,
@@ -56,7 +56,7 @@ class GridAttractions extends StatelessWidget {
                   right: 16,
                   bottom: 8,
                   child: Card(
-                    color: themeData.primaryColorDark,
+                    color: themeData!.primaryColorDark,
                     elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -64,8 +64,8 @@ class GridAttractions extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Text(attractions[index].name,
-                              style: themeData.textTheme.bodyText1,
+                          Text(attractions![index].name!,
+                              style: themeData!.textTheme.bodyText1,
                               overflow: TextOverflow.ellipsis),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,11 +73,11 @@ class GridAttractions extends StatelessWidget {
                             children: <Widget>[
                               Icon(
                                 Icons.location_on,
-                                color: themeData.accentColor,
+                                color: themeData!.accentColor,
                                 size: 20,
                               ),
-                              Text(attractions[index].district,
-                                  style: themeData.textTheme.bodyText1,
+                              Text(attractions![index].district!,
+                                  style: themeData!.textTheme.bodyText1,
                                   overflow: TextOverflow.ellipsis),
                             ],
                           ),

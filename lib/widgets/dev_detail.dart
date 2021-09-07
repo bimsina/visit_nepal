@@ -3,11 +3,11 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:visit_nepal/utils/custom_image.dart';
 
 class DevDetail extends StatelessWidget {
-  final ThemeData themeData;
-  final String name, mail, url, job;
+  final ThemeData? themeData;
+  final String? name, mail, url, job;
 
   const DevDetail(
-      {Key key, this.themeData, this.name, this.mail, this.url, this.job})
+      {Key? key, this.themeData, this.name, this.mail, this.url, this.job})
       : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class DevDetail extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        color: themeData.primaryColorDark,
+        color: themeData!.primaryColorDark,
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -40,13 +40,13 @@ class DevDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        name,
-                        style: themeData.textTheme.bodyText2,
+                        name!,
+                        style: themeData!.textTheme.bodyText2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        job,
-                        style: themeData.textTheme.bodyText1,
+                        job!,
+                        style: themeData!.textTheme.bodyText1,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
@@ -57,7 +57,7 @@ class DevDetail extends StatelessWidget {
               IconButton(
                 icon: Icon(
                   Icons.mail_outline,
-                  color: themeData.accentColor,
+                  color: themeData!.accentColor,
                 ),
                 onPressed: () async {
                   String url =

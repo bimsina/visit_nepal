@@ -5,10 +5,10 @@ import 'package:visit_nepal/theme/utils.dart';
 enum ThemeStateEnum { light, dark, amoled }
 
 class ThemeState extends ChangeNotifier {
-  SharedPreferences _sharedPreferences;
+  late SharedPreferences _sharedPreferences;
   ThemeData _themeData = kLightTheme;
 
-  get themeData => _themeData;
+  ThemeData get themeData => _themeData;
   set themeData(ThemeData val) {
     _themeData = val;
     notifyListeners();
@@ -44,7 +44,7 @@ class ThemeState extends ChangeNotifier {
   }
 
   ThemeStateEnum _getOption() {
-    int option = _sharedPreferences.get('theme_option') ?? 1;
+    int option = _sharedPreferences.get('theme_option') as int? ?? 1;
     return ThemeStateEnum.values[option];
   }
 }

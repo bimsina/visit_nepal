@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class RetryWidget extends StatefulWidget {
-  final ThemeData themeData;
-  final VoidCallback onRetried;
+  final ThemeData? themeData;
+  final VoidCallback? onRetried;
 
-  const RetryWidget({Key key, this.themeData, this.onRetried})
+  const RetryWidget({Key? key, this.themeData, this.onRetried})
       : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class _RetryWidgetState extends State<RetryWidget> {
           ? <Widget>[
               CircularProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(widget.themeData.accentColor),
+                    AlwaysStoppedAnimation<Color>(widget.themeData!.accentColor),
               )
             ]
           : <Widget>[
@@ -31,17 +31,17 @@ class _RetryWidgetState extends State<RetryWidget> {
               ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                        widget.themeData.accentColor)),
+                        widget.themeData!.accentColor)),
                 child: Text("Retry",
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1
-                        .copyWith(color: widget.themeData.primaryColor)),
+                        .bodyText1!
+                        .copyWith(color: widget.themeData!.primaryColor)),
                 onPressed: () {
                   setState(() {
                     isRetried = true;
                   });
-                  widget.onRetried();
+                  widget.onRetried!();
                 },
               )
             ],

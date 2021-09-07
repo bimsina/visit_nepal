@@ -1,8 +1,8 @@
 class OpenWeatherMap {
-  Coord coord;
-  List<Weather> weather;
-  String base;
-  Main main;
+  Coord? coord;
+  List<Weather>? weather;
+  String? base;
+  Main? main;
 
   OpenWeatherMap({
     this.coord,
@@ -16,7 +16,7 @@ class OpenWeatherMap {
     if (json['weather'] != null) {
       weather = [];
       json['weather'].forEach((v) {
-        weather.add(new Weather.fromJson(v));
+        weather?.add(new Weather.fromJson(v));
       });
     }
     base = json['base'];
@@ -26,22 +26,22 @@ class OpenWeatherMap {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.coord != null) {
-      data['coord'] = this.coord.toJson();
+      data['coord'] = this.coord?.toJson();
     }
     if (this.weather != null) {
-      data['weather'] = this.weather.map((v) => v.toJson()).toList();
+      data['weather'] = this.weather?.map((v) => v.toJson()).toList();
     }
     data['base'] = this.base;
     if (this.main != null) {
-      data['main'] = this.main.toJson();
+      data['main'] = this.main?.toJson();
     }
     return data;
   }
 }
 
 class Coord {
-  double lon;
-  double lat;
+  double? lon;
+  double? lat;
 
   Coord({this.lon, this.lat});
 
@@ -59,10 +59,10 @@ class Coord {
 }
 
 class Weather {
-  int id;
-  String main;
-  String description;
-  String icon;
+  int? id;
+  String? main;
+  String? description;
+  String? icon;
 
   Weather({this.id, this.main, this.description, this.icon});
 
@@ -84,12 +84,12 @@ class Weather {
 }
 
 class Main {
-  double temp;
-  int humidity;
-  double tempMin;
-  double tempMax;
-  double seaLevel;
-  double grndLevel;
+  double? temp;
+  int? humidity;
+  double? tempMin;
+  double? tempMax;
+  double? seaLevel;
+  double? grndLevel;
 
   Main(
       {this.temp,

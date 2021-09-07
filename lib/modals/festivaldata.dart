@@ -1,5 +1,5 @@
 class FestivalData {
-  List<Festival> festivalList;
+  List<Festival>? festivalList;
 
   FestivalData({this.festivalList});
 
@@ -7,7 +7,7 @@ class FestivalData {
     if (json['festivalList'] != null) {
       festivalList = [];
       json['festivalList'].forEach((v) {
-        festivalList.add(new Festival.fromJson(v));
+        festivalList?.add(new Festival.fromJson(v));
       });
     }
   }
@@ -15,18 +15,18 @@ class FestivalData {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.festivalList != null) {
-      data['festivalList'] = this.festivalList.map((v) => v.toJson()).toList();
+      data['festivalList'] = this.festivalList?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Festival {
-  String id;
-  String name;
-  List<String> img;
-  String image;
-  List<String> description;
+  String? id;
+  String? name;
+  List<String>? img;
+  String? image;
+  List<String>? description;
 
   Festival({this.id, this.name, this.img, this.image, this.description});
 

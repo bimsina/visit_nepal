@@ -10,18 +10,18 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 class HotelDetail extends StatefulWidget {
-  final String heroId;
+  final String? heroId;
   final Hotel hotel;
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
   HotelDetail(
-      {@required this.heroId, @required this.hotel, @required this.themeData});
+      {required this.heroId, required this.hotel, required this.themeData});
   @override
   _HotelDetailState createState() => _HotelDetailState();
 }
 
 class _HotelDetailState extends State<HotelDetail> {
-  OpenWeatherMap weatherData;
+  OpenWeatherMap? weatherData;
 
   void initState() {
     super.initState();
@@ -53,13 +53,13 @@ class _HotelDetailState extends State<HotelDetail> {
               expandedHeight: _height / 3,
               floating: true,
               title: Text(
-                widget.hotel.name,
-                style: widget.themeData.textTheme.headline5,
+                widget.hotel.name!,
+                style: widget.themeData!.textTheme.headline5,
               ),
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
-                  color: widget.themeData.accentColor,
+                  color: widget.themeData!.accentColor,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -69,26 +69,26 @@ class _HotelDetailState extends State<HotelDetail> {
                 IconButton(
                   icon: Icon(Icons.open_in_browser),
                   onPressed: () async {
-                    if (await canLaunch(widget.hotel.url)) {
-                      await launch(widget.hotel.url);
+                    if (await canLaunch(widget.hotel.url!)) {
+                      await launch(widget.hotel.url!);
                     } else {
                       print('cannot launch');
                     }
                   },
                 )
               ],
-              backgroundColor: widget.themeData.primaryColor,
+              backgroundColor: widget.themeData!.primaryColor,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 background: Hero(
-                  tag: widget.heroId,
+                  tag: widget.heroId!,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
                       bottomRight: Radius.circular(16.0),
                     ),
                     child: FadeInImage(
-                      image: customImage(widget.hotel.img[0]),
+                      image: customImage(widget.hotel.img![0]),
                       fit: BoxFit.cover,
                       placeholder: AssetImage('assets/images/loading.gif'),
                     ),
@@ -99,7 +99,7 @@ class _HotelDetailState extends State<HotelDetail> {
           ];
         },
         body: Container(
-            color: widget.themeData.primaryColor, child: generalTab()),
+            color: widget.themeData!.primaryColor, child: generalTab()),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -111,12 +111,12 @@ class _HotelDetailState extends State<HotelDetail> {
             print('cannot launch');
           }
         },
-        backgroundColor: widget.themeData.accentColor,
+        backgroundColor: widget.themeData!.accentColor,
         tooltip: 'Navigate',
         child: Transform.rotate(
             angle: math.pi / 4.0,
             child:
-                Icon(Icons.navigation, color: widget.themeData.primaryColor)),
+                Icon(Icons.navigation, color: widget.themeData!.primaryColor)),
       ),
     );
   }
@@ -127,7 +127,7 @@ class _HotelDetailState extends State<HotelDetail> {
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        color: widget.themeData.primaryColorDark,
+        color: widget.themeData!.primaryColorDark,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
@@ -140,7 +140,7 @@ class _HotelDetailState extends State<HotelDetail> {
                   child: Image.asset(
                       weatherData == null
                           ? 'assets/images/weather.gif'
-                          : 'assets/images/weather/${weatherData.weather[0].icon}.png',
+                          : 'assets/images/weather/${weatherData!.weather![0].icon}.png',
                       fit: BoxFit.cover),
                 ),
               ),
@@ -155,18 +155,18 @@ class _HotelDetailState extends State<HotelDetail> {
                       child: Text(
                           weatherData == null
                               ? 'Fetching...'
-                              : '${(weatherData.main.temp - 273.15).toStringAsFixed(2)} °C',
+                              : '${(weatherData!.main!.temp! - 273.15).toStringAsFixed(2)} °C',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.bodyText2),
+                          style: widget.themeData!.textTheme.bodyText2),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
                       child: Text(
                           weatherData == null
                               ? 'Fetching...'
-                              : '${weatherData.weather[0].description}',
+                              : '${weatherData!.weather![0].description}',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.bodyText1),
+                          style: widget.themeData!.textTheme.bodyText1),
                     ),
                   ],
                 ),
@@ -181,18 +181,18 @@ class _HotelDetailState extends State<HotelDetail> {
                     child: Text(
                         weatherData == null
                             ? '...'
-                            : '${(weatherData.main.tempMin - 273.15).toStringAsFixed(2)} / ${(weatherData.main.tempMax - 273.15).toStringAsFixed(2)} °C',
+                            : '${(weatherData!.main!.tempMin! - 273.15).toStringAsFixed(2)} / ${(weatherData!.main!.tempMax! - 273.15).toStringAsFixed(2)} °C',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.caption),
+                        style: widget.themeData!.textTheme.caption),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(
                         weatherData == null
                             ? '...'
-                            : 'Humidity : ${weatherData.main.humidity} %',
+                            : 'Humidity : ${weatherData!.main!.humidity} %',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.bodyText1),
+                        style: widget.themeData!.textTheme.bodyText1),
                   ),
                 ],
               ),
@@ -215,7 +215,7 @@ class _HotelDetailState extends State<HotelDetail> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text('Cost : ${widget.hotel.cost}',
-                  style: widget.themeData.textTheme.bodyText2),
+                  style: widget.themeData!.textTheme.bodyText2),
             ),
             // RaisedButton(
             //     color: widget.themeData.accentColor,
@@ -227,18 +227,18 @@ class _HotelDetailState extends State<HotelDetail> {
             //     ))
           ],
         ),
-        widget.hotel.img.length == 0 ? Container() : _imageWidget(),
+        widget.hotel.img!.length == 0 ? Container() : _imageWidget(),
         ExpansionTile(
           title: Text(
             'Amneties',
-            style: widget.themeData.textTheme.bodyText2,
+            style: widget.themeData!.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
             ListView.builder(
               physics: ClampingScrollPhysics(),
               padding: const EdgeInsets.all(0),
-              itemCount: widget.hotel.amenities.length,
+              itemCount: widget.hotel.amenities!.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 return Row(
@@ -247,17 +247,17 @@ class _HotelDetailState extends State<HotelDetail> {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                           radius: 12,
-                          backgroundColor: widget.themeData.accentColor,
+                          backgroundColor: widget.themeData!.accentColor,
                           child: Icon(
                             Icons.done,
                             size: 12,
-                            color: widget.themeData.primaryColor,
+                            color: widget.themeData!.primaryColor,
                           )),
                     ),
                     Expanded(
                       child: Text(
-                        widget.hotel.amenities[index],
-                        style: widget.themeData.textTheme.bodyText1,
+                        widget.hotel.amenities![index],
+                        style: widget.themeData!.textTheme.bodyText1,
                       ),
                     ),
                   ],
@@ -269,15 +269,15 @@ class _HotelDetailState extends State<HotelDetail> {
         ExpansionTile(
           title: Text(
             'Description',
-            style: widget.themeData.textTheme.bodyText2,
+            style: widget.themeData!.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  widget.hotel.description,
-                  style: widget.themeData.textTheme.bodyText1,
+                  widget.hotel.description!,
+                  style: widget.themeData!.textTheme.bodyText1,
                 )),
           ],
         )
@@ -296,7 +296,7 @@ class _HotelDetailState extends State<HotelDetail> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Photos',
-                style: widget.themeData.textTheme.bodyText2,
+                style: widget.themeData!.textTheme.bodyText2,
               ),
             ),
           ],

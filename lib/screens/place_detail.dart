@@ -11,18 +11,18 @@ import 'nearby_attractions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PlaceDetail extends StatefulWidget {
-  final String heroId;
+  final String? heroId;
   final Attraction place;
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
   PlaceDetail(
-      {@required this.heroId, @required this.place, @required this.themeData});
+      {required this.heroId, required this.place, required this.themeData});
   @override
   _PlaceDetailState createState() => _PlaceDetailState();
 }
 
 class _PlaceDetailState extends State<PlaceDetail> {
-  OpenWeatherMap weatherData;
+  OpenWeatherMap? weatherData;
 
   void initState() {
     super.initState();
@@ -59,17 +59,17 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back_ios,
-                    color: widget.themeData.accentColor,
+                    color: widget.themeData!.accentColor,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
-                backgroundColor: widget.themeData.primaryColor,
+                backgroundColor: widget.themeData!.primaryColor,
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Hero(
-                    tag: widget.heroId,
+                    tag: widget.heroId!,
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: kTextTabBarHeight),
                       child: ClipRRect(
@@ -88,16 +88,16 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 ),
                 bottom: TabBar(
                   indicatorSize: TabBarIndicatorSize.label,
-                  indicatorColor: widget.themeData.accentColor,
+                  indicatorColor: widget.themeData!.accentColor,
                   tabs: <Widget>[
                     Tab(
                       child: Text('General',
-                          style: widget.themeData.textTheme.bodyText1
+                          style: widget.themeData!.textTheme.bodyText1!
                               .copyWith(fontWeight: FontWeight.bold)),
                     ),
                     Tab(
                       child: Text('Nearby',
-                          style: widget.themeData.textTheme.bodyText1
+                          style: widget.themeData!.textTheme.bodyText1!
                               .copyWith(fontWeight: FontWeight.bold)),
                     ),
                     // Tab(
@@ -111,7 +111,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
             ];
           },
           body: Container(
-              color: widget.themeData.primaryColor,
+              color: widget.themeData!.primaryColor,
               child: TabBarView(
                 children: <Widget>[
                   generalTab(),
@@ -136,25 +136,25 @@ class _PlaceDetailState extends State<PlaceDetail> {
             print('cannot launch');
           }
         },
-        backgroundColor: widget.themeData.accentColor,
+        backgroundColor: widget.themeData!.accentColor,
         tooltip: 'Navigate',
         child: Transform.rotate(
             angle: math.pi / 4.0,
             child:
-                Icon(Icons.navigation, color: widget.themeData.primaryColor)),
+                Icon(Icons.navigation, color: widget.themeData!.primaryColor)),
       ),
     );
   }
 
   Widget weatherWidget() {
     if (weatherData == null) return SizedBox.shrink();
-    var _data = weatherData?.weather[0]?.icon;
+    var _data = weatherData?.weather![0].icon;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        color: widget.themeData.primaryColorDark,
+        color: widget.themeData!.primaryColorDark,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
@@ -169,7 +169,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                       : Image.asset(
                           weatherData == null
                               ? 'assets/images/weather.gif'
-                              : 'assets/images/weather/${weatherData.weather[0].icon}.png',
+                              : 'assets/images/weather/${weatherData!.weather![0].icon}.png',
                           fit: BoxFit.cover),
                 ),
               ),
@@ -184,18 +184,18 @@ class _PlaceDetailState extends State<PlaceDetail> {
                       child: Text(
                           weatherData == null
                               ? 'Fetching...'
-                              : '${(weatherData.main.temp - 273.15).toStringAsFixed(2)} °C',
+                              : '${(weatherData!.main!.temp! - 273.15).toStringAsFixed(2)} °C',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.bodyText2),
+                          style: widget.themeData!.textTheme.bodyText2),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
                       child: Text(
                           weatherData == null
                               ? 'Fetching...'
-                              : '${weatherData.weather[0].description}',
+                              : '${weatherData!.weather![0].description}',
                           overflow: TextOverflow.ellipsis,
-                          style: widget.themeData.textTheme.bodyText1),
+                          style: widget.themeData!.textTheme.bodyText1),
                     ),
                   ],
                 ),
@@ -210,18 +210,18 @@ class _PlaceDetailState extends State<PlaceDetail> {
                     child: Text(
                         weatherData == null
                             ? '...'
-                            : '${(weatherData.main.tempMin - 273.15).toStringAsFixed(2)} / ${(weatherData.main.tempMax - 273.15).toStringAsFixed(2)} °C',
+                            : '${(weatherData!.main!.tempMin! - 273.15).toStringAsFixed(2)} / ${(weatherData!.main!.tempMax! - 273.15).toStringAsFixed(2)} °C',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.caption),
+                        style: widget.themeData!.textTheme.caption),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(
                         weatherData == null
                             ? '...'
-                            : 'Humidity : ${weatherData.main.humidity} %',
+                            : 'Humidity : ${weatherData!.main!.humidity} %',
                         overflow: TextOverflow.ellipsis,
-                        style: widget.themeData.textTheme.bodyText1),
+                        style: widget.themeData!.textTheme.bodyText1),
                   ),
                 ],
               ),
@@ -240,25 +240,25 @@ class _PlaceDetailState extends State<PlaceDetail> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            widget.place.name,
-            style: widget.themeData.textTheme.headline5,
+            widget.place.name!,
+            style: widget.themeData!.textTheme.headline5,
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Chip(
-              backgroundColor: widget.themeData.accentColor,
+              backgroundColor: widget.themeData!.accentColor,
               label: Row(
                 children: <Widget>[
                   Icon(
                     Icons.location_on,
-                    color: widget.themeData.primaryColor,
+                    color: widget.themeData!.primaryColor,
                   ),
                   Text(
-                    widget.place.district,
-                    style: widget.themeData.textTheme.bodyText1
-                        .copyWith(color: widget.themeData.primaryColor),
+                    widget.place.district!,
+                    style: widget.themeData!.textTheme.bodyText1!
+                        .copyWith(color: widget.themeData!.primaryColor),
                   ),
                 ],
               ),
@@ -266,11 +266,11 @@ class _PlaceDetailState extends State<PlaceDetail> {
           ],
         ),
         weatherWidget(),
-        widget.place.img.length == 0 ? Container() : _imageWidget(),
+        widget.place.img!.length == 0 ? Container() : _imageWidget(),
         ExpansionTile(
           title: Text(
             'Description',
-            style: widget.themeData.textTheme.bodyText2,
+            style: widget.themeData!.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
@@ -279,11 +279,11 @@ class _PlaceDetailState extends State<PlaceDetail> {
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: widget.place.description.length,
+                itemCount: widget.place.description!.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Text(
-                    widget.place.description[index],
-                    style: widget.themeData.textTheme.bodyText1,
+                    widget.place.description![index],
+                    style: widget.themeData!.textTheme.bodyText1,
                   );
                 },
               ),
@@ -305,7 +305,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Photos',
-                style: widget.themeData.textTheme.bodyText2,
+                style: widget.themeData!.textTheme.bodyText2,
               ),
             ),
           ],

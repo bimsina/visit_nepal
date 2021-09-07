@@ -3,7 +3,7 @@ import 'package:visit_nepal/widgets/dev_detail.dart';
 
 class AboutScreen extends StatelessWidget {
   final ThemeData themeData;
-  AboutScreen({this.themeData});
+  AboutScreen({required this.themeData});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

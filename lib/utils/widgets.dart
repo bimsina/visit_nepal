@@ -4,7 +4,7 @@ class ShowMore extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
 
-  ShowMore({@required this.text, @required this.onTap});
+  ShowMore({required this.text, required this.onTap});
   @override
   Widget build(BuildContext context) {
     return Row(

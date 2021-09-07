@@ -12,7 +12,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  int option;
+  int? option;
   final List<Color> colors = [
     lightThemePrimaryColor,
     darkThemePrimaryColor,

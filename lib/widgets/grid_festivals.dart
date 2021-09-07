@@ -5,17 +5,17 @@ import 'package:visit_nepal/screens/festival_detail.dart';
 import 'package:visit_nepal/utils/custom_image.dart';
 
 class GridFestivals extends StatelessWidget {
-  final List<Festival> festivals;
-  final ThemeData themeData;
+  final List<Festival>? festivals;
+  final ThemeData? themeData;
   GridFestivals({this.festivals, this.themeData});
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: themeData.primaryColor,
+      color: themeData!.primaryColor,
       padding: EdgeInsets.only(top: 8),
       child: GridView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: festivals.length,
+        itemCount: festivals!.length,
         gridDelegate:
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
@@ -25,8 +25,8 @@ class GridFestivals extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => FestivalDetail(
-                            festival: festivals[index],
-                            heroId: festivals[index].name,
+                            festival: festivals![index],
+                            heroId: festivals![index].name,
                             themeData: themeData,
                           )));
             },
@@ -40,9 +40,9 @@ class GridFestivals extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     child: Hero(
-                      tag: festivals[index].name,
+                      tag: festivals![index].name!,
                       child: FadeInImage(
-                        image: customImage(festivals[index].image),
+                        image: customImage(festivals![index].image),
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,
@@ -56,13 +56,13 @@ class GridFestivals extends StatelessWidget {
                   right: 16,
                   bottom: 8,
                   child: Card(
-                    color: themeData.primaryColorDark,
+                    color: themeData!.primaryColorDark,
                     elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Center(
-                        child: Text(festivals[index].name,
-                            style: themeData.textTheme.bodyText1,
+                        child: Text(festivals![index].name!,
+                            style: themeData!.textTheme.bodyText1,
                             overflow: TextOverflow.ellipsis),
                       ),
                     ),

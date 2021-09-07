@@ -4,14 +4,14 @@ import 'package:visit_nepal/utils/custom_image.dart';
 import '../widgets/custom_carousel.dart';
 
 class FestivalDetail extends StatefulWidget {
-  final String heroId;
+  final String? heroId;
   final Festival festival;
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
   FestivalDetail(
-      {@required this.heroId,
-      @required this.festival,
-      @required this.themeData});
+      {required this.heroId,
+      required this.festival,
+      required this.themeData});
   @override
   _FestivalDetailState createState() => _FestivalDetailState();
 }
@@ -28,23 +28,23 @@ class _FestivalDetailState extends State<FestivalDetail> {
               expandedHeight: _height / 3,
               floating: true,
               title: Text(
-                widget.festival.name,
-                style: widget.themeData.textTheme.headline5,
+                widget.festival.name!,
+                style: widget.themeData!.textTheme.headline5,
               ),
               leading: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
-                  color: widget.themeData.accentColor,
+                  color: widget.themeData!.accentColor,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
-              backgroundColor: widget.themeData.primaryColor,
+              backgroundColor: widget.themeData!.primaryColor,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 background: Hero(
-                  tag: widget.heroId,
+                  tag: widget.heroId!,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
@@ -62,7 +62,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
           ];
         },
         body: Container(
-            color: widget.themeData.primaryColor, child: generalTab()),
+            color: widget.themeData!.primaryColor, child: generalTab()),
       ),
     );
   }
@@ -72,7 +72,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.all(0),
       children: <Widget>[
-        widget.festival.img.length == 0
+        widget.festival.img!.length == 0
             ? Container()
             : Column(
                 mainAxisSize: MainAxisSize.min,
@@ -84,7 +84,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'Photos',
-                          style: widget.themeData.textTheme.bodyText2,
+                          style: widget.themeData!.textTheme.bodyText2,
                         ),
                       ),
                     ],
@@ -101,7 +101,7 @@ class _FestivalDetailState extends State<FestivalDetail> {
         ExpansionTile(
           title: Text(
             'Description',
-            style: widget.themeData.textTheme.bodyText2,
+            style: widget.themeData!.textTheme.bodyText2,
           ),
           initiallyExpanded: true,
           children: <Widget>[
@@ -110,11 +110,11 @@ class _FestivalDetailState extends State<FestivalDetail> {
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: widget.festival.description.length,
+                itemCount: widget.festival.description!.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Text(
-                    widget.festival.description[index],
-                    style: widget.themeData.textTheme.bodyText1,
+                    widget.festival.description![index],
+                    style: widget.themeData!.textTheme.bodyText1,
                   );
                 },
               ),

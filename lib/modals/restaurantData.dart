@@ -1,26 +1,26 @@
 class RestaurantData {
-  List<Restaurant> restaurantList;
-  List<Restaurant> cafeList;
-  List<Restaurant> pubList;
+  List<Restaurant>? restaurantList;
+  List<Restaurant>? cafeList;
+  List<Restaurant>? pubList;
   RestaurantData({this.restaurantList, this.cafeList, this.pubList});
 
   RestaurantData.fromJson(Map<String, dynamic> json) {
     if (json['restaurantList'] != null) {
       restaurantList = [];
       json['restaurantList'].forEach((v) {
-        restaurantList.add(new Restaurant.fromJson(v));
+        restaurantList?.add(new Restaurant.fromJson(v));
       });
     }
     if (json['cafeList'] != null) {
       cafeList = [];
       json['cafeList'].forEach((v) {
-        cafeList.add(new Restaurant.fromJson(v));
+        cafeList?.add(new Restaurant.fromJson(v));
       });
     }
     if (json['pubList'] != null) {
       pubList = [];
       json['pubList'].forEach((v) {
-        pubList.add(new Restaurant.fromJson(v));
+        pubList?.add(new Restaurant.fromJson(v));
       });
     }
   }
@@ -29,20 +29,20 @@ class RestaurantData {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.restaurantList != null) {
       data['restaurantList'] =
-          this.restaurantList.map((v) => v.toJson()).toList();
+          this.restaurantList?.map((v) => v.toJson()).toList();
     }
     if (this.cafeList != null) {
-      data['cafeList'] = this.cafeList.map((v) => v.toJson()).toList();
+      data['cafeList'] = this.cafeList?.map((v) => v.toJson()).toList();
     }
     if (this.pubList != null) {
-      data['pubList'] = this.pubList.map((v) => v.toJson()).toList();
+      data['pubList'] = this.pubList?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class NearbyData {
-  List<Restaurant> restaurantList;
+  List<Restaurant>? restaurantList;
 
   NearbyData({this.restaurantList});
 
@@ -50,7 +50,7 @@ class NearbyData {
     if (json['RestaurantByProvince'] != null) {
       restaurantList = [];
       json['RestaurantByProvince'].forEach((v) {
-        restaurantList.add(new Restaurant.fromJson(v));
+        restaurantList?.add(new Restaurant.fromJson(v));
       });
     }
   }
@@ -59,18 +59,18 @@ class NearbyData {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.restaurantList != null) {
       data['restaurantByProvince'] =
-          this.restaurantList.map((v) => v.toJson()).toList();
+          this.restaurantList?.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Restaurant {
-  String id, name, image, district, description;
-  int province;
-  List<String> img;
-  double latitude;
-  double longitude;
+  String? id, name, image, district, description;
+  int? province;
+  List<String>? img;
+  double? latitude;
+  double? longitude;
 
   Restaurant(
       {this.id,

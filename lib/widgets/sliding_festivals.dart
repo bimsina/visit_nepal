@@ -12,7 +12,7 @@ import 'dart:math' as math;
 import 'package:visit_nepal/widgets/retry_widget.dart';
 
 class SlidingFestivalsView extends StatefulWidget {
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
   SlidingFestivalsView({this.themeData});
 
@@ -21,21 +21,21 @@ class SlidingFestivalsView extends StatefulWidget {
 }
 
 class _SlidingFestivalsViewState extends State<SlidingFestivalsView> {
-  PageController pageController;
-  double pageOffset = 0;
+  PageController? pageController;
+  double? pageOffset = 0;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController(viewportFraction: 0.8);
-    pageController.addListener(() {
-      setState(() => pageOffset = pageController.page);
+    pageController!.addListener(() {
+      setState(() => pageOffset = pageController!.page);
     });
   }
 
   @override
   void dispose() {
-    pageController.dispose();
+    pageController!.dispose();
     super.dispose();
   }
 
@@ -53,7 +53,7 @@ class _SlidingFestivalsViewState extends State<SlidingFestivalsView> {
               children: <Widget>[
                 CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      widget.themeData.accentColor),
+                      widget.themeData!.accentColor),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -68,12 +68,12 @@ class _SlidingFestivalsViewState extends State<SlidingFestivalsView> {
             return RetryWidget(
               themeData: widget.themeData,
               onRetried: () {
-                refetch();
+                refetch!();
               },
             );
           } else {
             List<Festival> festivals =
-                FestivalData.fromJson(result.data).festivalList;
+                FestivalData.fromJson(result.data!).festivalList!;
             return Column(
               children: <Widget>[
                 ShowMore(
@@ -102,15 +102,15 @@ class _SlidingFestivalsViewState extends State<SlidingFestivalsView> {
                               MaterialPageRoute(
                                   builder: (context) => FestivalDetail(
                                         festival: Festival.fromJson(
-                                            result.data['festivalList'][index]),
+                                            result.data!['festivalList'][index]),
                                         heroId: festivals[index].name,
                                         themeData: widget.themeData,
                                       )));
                         },
                         child: SlidingCard(
-                          name: result.data['festivalList'][index]['name'],
-                          imageUrl: result.data['festivalList'][index]['image'],
-                          offset: pageOffset - index,
+                          name: result.data!['festivalList'][index]['name'],
+                          imageUrl: result.data!['festivalList'][index]['image'],
+                          offset: pageOffset! - index,
                         ),
                       );
                     },
@@ -126,14 +126,14 @@ class _SlidingFestivalsViewState extends State<SlidingFestivalsView> {
 }
 
 class SlidingCard extends StatelessWidget {
-  final String name, imageUrl;
+  final String? name, imageUrl;
   final double offset;
 
   const SlidingCard({
-    Key key,
-    @required this.name,
-    @required this.imageUrl,
-    @required this.offset,
+    Key? key,
+    required this.name,
+    required this.imageUrl,
+    required this.offset,
   }) : super(key: key);
 
   @override
@@ -151,7 +151,7 @@ class SlidingCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               child: Hero(
-                tag: name,
+                tag: name!,
                 child: FadeInImage(
                   image: customImage(imageUrl),
                   width: double.infinity,
@@ -173,7 +173,7 @@ class SlidingCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Center(
-                  child: Text(name,
+                  child: Text(name!,
                       style: Theme.of(context).textTheme.bodyText2,
                       overflow: TextOverflow.ellipsis),
                 ),

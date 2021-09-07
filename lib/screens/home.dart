@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                 color: state.themeData.accentColor,
               ),
               onPressed: () {
-                _scaffoldKey.currentState.openDrawer();
+                _scaffoldKey.currentState!.openDrawer();
               },
             ),
             backgroundColor: state.themeData.primaryColor),
